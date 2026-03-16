@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  /* 2026 Typography Standards */
+  --ff-head: 'Outfit', sans-serif;
+  --ff-body: 'Outfit', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+
+  /* Premium Modern Dark Mode with high contrast */
+  --bg: #05050A; /* Extremely dark blue/black base instead of flat black */
+  --bg1: rgba(20, 20, 30, 0.4); /* Glassmorphic card backgrounds */
+  
+  /* Vibrant Accent Palette */
+  --gold: #FFB800; /* Brighter gold */
+  --emerald: #00F0FF; /* Shifted from emerald to a vibrant cyber-cyan for tech feel */
+  --sky: #8B5CF6; /* Violet accent */
+  
+  /* Glowing Orbs Palette */
+  --orb-1: rgba(255, 184, 0, 0.15); /* Gold glow */
+  --orb-2: rgba(139, 92, 246, 0.15); /* Purple glow */
+  --orb-3: rgba(0, 240, 255, 0.10); /* Cyan core glow */
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: #fff;
+  font-family: var(--ff-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base button styles */
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Terminal Caret Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}

@@ -1,0 +1,215 @@
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────────────── */
+:root {
+  --bg:       #07090F;
+  --bg1:      #0C1020;
+  --bg2:      #111827;
+  --border:   rgba(245, 158, 11, 0.18);
+  --border-subtle: rgba(245, 158, 11, 0.08);
+  --gold:     #F59E0B;
+  --gold-dim: rgba(245, 158, 11, 0.08);
+  --gold-glow: rgba(245, 158, 11, 0.15);
+  --emerald:  #10B981;
+  --sky:      #38BDF8;
+  --red:      #F87171;
+  --text:     #E2E8F0;
+  --muted:    #64748B;
+  --faint:    #1E293B;
+  --ff-head:  'Syne', sans-serif;
+  --ff-body:  'DM Sans', sans-serif;
+  --ff-mono:  'JetBrains Mono', monospace;
+  --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+
+  /* Section spacing */
+  --section-px: clamp(1.5rem, 8vw, 9rem);
+  --section-py: clamp(5rem, 10vw, 8rem);
+}
+
+/* ─── TERMINAL MODE ─────────────────────────────────────────────────────── */
+html.terminal-mode {
+  --bg:       #050806;
+  --bg1:      #0A0E09;
+  --bg2:      #0F1510;
+  --border:   rgba(0, 255, 65, 0.25);
+  --border-subtle: rgba(0, 255, 65, 0.10);
+  --gold:     #00FF41;
+  --gold-dim: rgba(0, 255, 65, 0.08);
+  --gold-glow: rgba(0, 255, 65, 0.15);
+  --emerald:  #00E639;
+  --sky:      #00FF41;
+  --red:      #FF4444;
+  --text:     #CCFFCC;
+  --muted:    #4A8850;
+  --faint:    #0D1A0F;
+  --ff-head:  'JetBrains Mono', monospace;
+  --ff-body:  'JetBrains Mono', monospace;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+/* ─── CUSTOM SCROLLBAR ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ─── GRID BACKGROUND ────────────────────────────────────────────────────── */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+  transition: background-image 0.4s var(--ease);
+}
+
+html.terminal-mode .grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+.ff-head { font-family: var(--ff-head); }
+.ff-mono { font-family: var(--ff-mono); }
+
+/* ─── SECTION BASE ───────────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-py) var(--section-px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-full {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-py) var(--section-px);
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ─── DIVIDER ────────────────────────────────────────────────────────────── */
+.full-divider {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--section-px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.full-divider hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ─── UTILITY ────────────────────────────────────────────────────────────── */
+.text-gold  { color: var(--gold); }
+.text-muted { color: var(--muted); }
+.text-emerald { color: var(--emerald); }
+.text-sky   { color: var(--sky); }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ─── TERMINAL MODE SCANLINE EFFECT ─────────────────────────────────────── */
+html.terminal-mode::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.015) 2px,
+    rgba(0, 255, 65, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── SELECTION ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+html.terminal-mode ::selection {
+  background: rgba(0, 255, 65, 0.2);
+  color: #00FF41;
+}
+
+/* ─── FOCUS STYLES ───────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --section-px: 1.5rem;
+    --section-py: 4rem;
+  }
+}
